@@ -4,7 +4,7 @@ import Modal from "../UI/Modal";
 
 import classes from "./Cart.module.css";
 
-const Cart = ({ onHideCart }) => {
+const Cart = ({ onClose }) => {
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {[{ id: "c1", name: "Sushi", amount: 2, price: 12.99 }].map((item) => (
@@ -13,7 +13,7 @@ const Cart = ({ onHideCart }) => {
     </ul>
   );
   return (
-    <Modal onHideCart={onHideCart}>
+    <Modal onClose={onClose}>
       {cartItems}
       <div className={classes.total}>
         <span>Total amount</span>
@@ -21,7 +21,7 @@ const Cart = ({ onHideCart }) => {
       </div>
 
       <div className={classes.actions}>
-        <button onClick={onHideCart} className={classes["button--alt"]}>
+        <button onClick={onClose} className={classes["button--alt"]}>
           Close
         </button>
         <button className={classes["button"]}>Order</button>

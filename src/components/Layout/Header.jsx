@@ -10,7 +10,7 @@ const Header = ({ onShowCart }) => {
     <Fragment>
       <header className={classes.header}>
         <h1>Dev Meals</h1>
-        <HeaderCartButton onShowCart={onShowCart} />
+        <HeaderCartButton onClick={onShowCart} />
       </header>
 
       <div className={classes["main-image"]}>

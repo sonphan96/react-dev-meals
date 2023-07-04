@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <Fragment>
-      {cartIsShow && <Cart onHideCart={hideCartHandler} />}
+      {cartIsShow && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
 
       <main>
