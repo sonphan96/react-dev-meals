@@ -16,7 +16,7 @@ const MealIteamForm = ({ id, onAddToCart }) => {
     const enteredAmountNumer = +enteredAmount;
 
     if (
-      // enteredAmount.trim() !== "" ||
+      enteredAmount.trim() === "" ||
       enteredAmountNumer < 1 ||
       enteredAmountNumer > 5
     ) {
