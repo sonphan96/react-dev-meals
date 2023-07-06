@@ -9,9 +9,43 @@ const defaultCartState = {
 
 const cartReducer = (state, action) => {
   if (action.type === "ADD") {
-    const updatedItems = state.items.concat(action.item);
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;
+
+    const existingCartItemIndex = state.items.findIndex(
+      (item) => item.id === action.item.id
+    );
+
+    const existingCartItem = state.items[existingCartItemIndex];
+
+    let updatedItems;
+    let updatedItem;
+
+    if (existingCartItem) {
+      // Update the amount of existing item
+      updatedItem = {
+        ...existingCartItem,
+        amount: existingCartItem.amount + action.item.amount,
+      };
+
+      // update array of items
+      updatedItems = [...state.items]; // make a shallow copy
+      updatedItems[existingCartItemIndex] = updatedItem;
+
+      // // Use Map function to update
+      // return state.items.map((item) => {
+      //   if (item.id === existingCartItem.id) {
+      //     return { ...item, amount: item.amount + action.item.amount };
+      //   }
+      //   return item;
+      // });
+    } else {
+      updatedItem = { ...action.item };
+      updatedItems = state.items.concat(updatedItem);
+
+      // return [...state.items, action.item];
+    }
+
     return {
       items: updatedItems,
       totalAmount: updatedTotalAmount,
